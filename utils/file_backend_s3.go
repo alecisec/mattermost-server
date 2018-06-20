@@ -233,7 +233,7 @@ func (b *S3FileBackend) RemoveDirectory(path string) *model.AppError {
 }
 
 func s3PutOptions(encrypted bool, contentType string) s3.PutObjectOptions {
-	options := s3.PutObjectOptions{}
+	options := s3.PutObjectOptions{PartSize:1024*1024*50}
 	if encrypted {
 		options.ServerSideEncryption = encrypt.NewSSE()
 	}
